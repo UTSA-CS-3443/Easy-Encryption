@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
  * @author Jacob Houssian
  *
  *
+ * @author Preaston Cunningham
  */
 public class Main extends Application {
 	@Override
