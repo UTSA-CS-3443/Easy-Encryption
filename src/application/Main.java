@@ -9,8 +9,7 @@ import javafx.scene.layout.BorderPane;
  * The Main class test
  * 
  * @author Jacob Houssian
- *
- *
+ * @author Abdurrahmaan Baghdadi
  * @author Preaston Cunningham
  */
 public class Main extends Application {
