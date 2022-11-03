@@ -6,8 +6,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 /**
+ * The Main class
  * 
  * @author Jacob Houssian
+ *
  *
  */
 public class Main extends Application {
