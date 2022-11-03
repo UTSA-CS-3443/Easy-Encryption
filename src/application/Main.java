@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 /**
- * The Main class
+ * The Main class test
  * 
  * @author Jacob Houssian
  *
