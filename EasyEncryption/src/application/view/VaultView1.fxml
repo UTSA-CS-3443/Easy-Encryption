@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="outerAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VaultController">
+   <children>
+      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="395.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt" />
+            <Button fx:id="decrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Decrypt" />
+            <Button fx:id="vault" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Vault" />
+            <Button fx:id="savedKeys" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Saved Keys" />
+         </children>
+      </HBox>
+      <AnchorPane fx:id="innerAp" layoutX="25.0" layoutY="105.0" prefHeight="470.0" prefWidth="700.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label fx:id="state" layoutX="315.0" layoutY="152.0" prefHeight="46.0" prefWidth="135.0" text="Label">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
