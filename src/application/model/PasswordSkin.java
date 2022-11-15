@@ -5,8 +5,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.skin.TextFieldSkin;
 
 public class PasswordSkin extends TextFieldSkin {
-	
-	public PasswordSkin(TextField textField) {
+
+    public PasswordSkin(TextField textField) {
         super(textField);
     }
 

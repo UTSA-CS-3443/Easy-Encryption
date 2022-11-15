@@ -28,66 +28,75 @@ import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
 public class EncryptController implements EventHandler<ActionEvent>, Initializable {
-	@FXML
-	private AnchorPane apParent, ap1, ap2, apChild1, apChild2;
-	@FXML
-	private HBox buttons;
-	@FXML
+    @FXML
+    private AnchorPane apParent, ap1, ap2, apChild1, apChild2;
+    @FXML
+    private HBox buttons;
+    @FXML
     private Button encrypt, decrypt, vault, savedKeys, fopen;
-    @FXML private Label regFileContent, encryptFileContent; 
-	 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		apParent.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-		apParent.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-		buttons.setSpacing(10);
+    @FXML
+    private Label regFileContent, encryptFileContent;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        apParent.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
+        apParent.setBackground(new Background(
+                new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        buttons.setSpacing(10);
         buttons.setPadding(new Insets(15, 15, 15, 18));
         buttons.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
         ap1.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
         ap2.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
         apChild1.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-        apChild2.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");        
-	}
-	
-	@Override
-	public void handle(ActionEvent event) {
-		Loaders loader = new Loaders();
-		Button button = (Button) event.getSource();
-		String buttonText = button.getText();
-		
-	    if (buttonText.equals("Decrypt")) loader.loadSceneDecrypt();
-		else if (buttonText.equals("Vault")) loader.loadSceneVault();
-		else if (buttonText.equals("Saved Keys")) loader.loadSceneKeys();
-		else if (buttonText.equals("Open File")) {
-			FileChooser fChooser = new FileChooser();
-			File file = fChooser.showOpenDialog(Main.primaryStage);
-			
-			Scanner scan = null;
-			StringBuilder bookText = new StringBuilder();
-			
-			try {
-				scan = new Scanner(new File(file.getAbsolutePath()));
-				
-				while(scan.hasNextLine()) {
-					bookText.append(scan.nextLine());
-					bookText.append("\n");
-			    }
-				scan.close();
-		    } catch(IOException e) { e.printStackTrace(); }
-			
-			regFileContent.setText(bookText.toString());
-			
-			try {
-				KeyGenerator keyGenerator = KeyGenerator.getInstance("DES"); 
-				SecretKey desKey = keyGenerator.generateKey();
-				Cipher cipher = Cipher.getInstance("DES");
-				cipher.init(Cipher.ENCRYPT_MODE, desKey);
-				
-				byte[] fileContent = bookText.toString().getBytes("UTF8");
-	            byte[] fileEncryption = cipher.doFinal(fileContent);
-	            encryptFileContent.setText(new String(fileEncryption));
+        apChild2.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
+    }
 
-            } catch(Exception e) { e.printStackTrace(); }
-		}
-	}
+    @Override
+    public void handle(ActionEvent event) {
+        Loaders loader = new Loaders();
+        Button button = (Button) event.getSource();
+        String buttonText = button.getText();
+
+        if (buttonText.equals("Decrypt"))
+            loader.loadSceneDecrypt();
+        else if (buttonText.equals("Vault"))
+            loader.loadSceneVault();
+        else if (buttonText.equals("Saved Keys"))
+            loader.loadSceneKeys();
+        else if (buttonText.equals("Open File")) {
+            FileChooser fChooser = new FileChooser();
+            File file = fChooser.showOpenDialog(Main.primaryStage);
+
+            Scanner scan = null;
+            StringBuilder bookText = new StringBuilder();
+
+            try {
+                scan = new Scanner(new File(file.getAbsolutePath()));
+
+                while (scan.hasNextLine()) {
+                    bookText.append(scan.nextLine());
+                    bookText.append("\n");
+                }
+                scan.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            regFileContent.setText(bookText.toString());
+
+            try {
+                KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");
+                SecretKey desKey = keyGenerator.generateKey();
+                Cipher cipher = Cipher.getInstance("DES");
+                cipher.init(Cipher.ENCRYPT_MODE, desKey);
+
+                byte[] fileContent = bookText.toString().getBytes("UTF8");
+                byte[] fileEncryption = cipher.doFinal(fileContent);
+                encryptFileContent.setText(new String(fileEncryption));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
