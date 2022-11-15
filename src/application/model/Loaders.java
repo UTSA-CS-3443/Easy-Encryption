@@ -29,8 +29,8 @@ public class Loaders {
     public void loadScene(String file) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/application/view/" + file));
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
+            Main.primaryStage.setScene(new Scene(root, 800, 800));
+            Main.primaryStage.show();
         }catch(Exception e) {
             e.printStackTrace();
         }       
@@ -49,8 +49,8 @@ public class Loaders {
     public void loadSceneEncrypt() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/application/view/EncryptView.fxml"));
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
+            Main.primaryStage.setScene(new Scene(root, 800, 800));
+            Main.primaryStage.show();
         }catch(Exception e) {
             e.printStackTrace();
         }
@@ -64,8 +64,8 @@ public class Loaders {
     public void loadSceneDecrypt() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/application/view/DecryptView.fxml"));
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
+            Main.primaryStage.setScene(new Scene(root, 800, 800));
+            Main.primaryStage.show();
         }catch(Exception e) {
             e.printStackTrace();
         }
@@ -78,8 +78,8 @@ public class Loaders {
     public void loadSceneVault() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/application/view/VaultView.fxml"));
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
+            Main.primaryStage.setScene(new Scene(root, 800, 800));
+            Main.primaryStage.show();
         }catch(Exception e) {
             e.printStackTrace();
         }
@@ -92,8 +92,8 @@ public class Loaders {
     public void loadSceneKeys() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/application/view/SavedKeysView.fxml"));
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
+            Main.primaryStage.setScene(new Scene(root, 800, 800));
+            Main.primaryStage.show();
         }catch(Exception e) {
             e.printStackTrace();
         }
@@ -106,8 +106,8 @@ public class Loaders {
     public void loadSceneLogout() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/application/view/LoginView.fxml"));
-            Main.stage.setScene(new Scene(root, 800, 800));
-            Main.stage.show();
+            Main.primaryStage.setScene(new Scene(root, 800, 800));
+            Main.primaryStage.show();
         }catch(Exception e) {
             e.printStackTrace();
         }
