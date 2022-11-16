@@ -1,42 +1,57 @@
 package application.model;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Encryption {
 
-    public String encrypt(String data, SecretKey ourKey) throws Exception {
-            try {
+    private Cipher encryptionCipher;
+	
+	public String encrypt(String data, SecretKey myKey) throws Exception {
+        byte[] dataInBytes = data.getBytes();
+        encryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
+        encryptionCipher.init(Cipher.ENCRYPT_MODE, myKey);
+        byte[] encryptedBytes = encryptionCipher.doFinal(dataInBytes);
+        return encode(encryptedBytes);
+	
+	}
+	
+	
+	 public String decrypt(String encryptedData, SecretKey myKey, int DATA_LENGTH) throws Exception {
+	        byte[] dataInBytes = decode(encryptedData);
+	        Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
+	        GCMParameterSpec spec = new GCMParameterSpec(DATA_LENGTH, encryptionCipher.getIV());
+	        decryptionCipher.init(Cipher.DECRYPT_MODE, myKey, spec);
+	        byte[] decryptedBytes = decryptionCipher.doFinal(dataInBytes);
+	        return new String(decryptedBytes);
+	    }
+	
+	
+	 private String encode(byte[] data) {
+	        return Base64.getEncoder().encodeToString(data);
+	    }
 
-                Cipher cipher = Cipher.getInstance("AES");
-                cipher.init(Cipher.ENCRYPT_MODE, ourKey);
-                return Base64.getEncoder().encodeToString(cipher.doFinal(data.getBytes("UTF-8")));
-            } catch (Exception e) {
-                System.out.println("Error while encrypting: " + e.toString());
-            }
-            return null;
-        }
+	    private byte[] decode(String data) {
+	        return Base64.getDecoder().decode(data);
+	    }
+	 
 
-    public String decrypt(String encryptedData, SecretKey ourKey) throws Exception {
-                try {
-
-                    Cipher cipher = Cipher.getInstance("AES");
-                    cipher.init(Cipher.DECRYPT_MODE, ourKey);
-                    return new String(cipher.doFinal(Base64.getDecoder().decode(encryptedData)));
-                   } catch (Exception e) {
-                    System.out.println("Error while decrypting: " + e.toString());
-                }
-                return null;
-            }
-
-
-    public static SecretKey convertStringToSecretKey(String encodedKey) {
-        byte[] decodedKey = Base64.getDecoder().decode(encodedKey);
-        SecretKey originalKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
-        return originalKey;
-    }
-
+	 
+	    public static SecretKey getKeyFromPassword(String password, String salt)
+	              throws NoSuchAlgorithmException, InvalidKeySpecException {
+	                SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
+	                KeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(), 65536, 256);
+	                SecretKey originalKey = new SecretKeySpec(factory.generateSecret(spec).getEncoded(), "AES");
+	                return originalKey;
+	            }
+	        
 }
