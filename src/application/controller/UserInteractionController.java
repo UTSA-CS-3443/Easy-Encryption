@@ -2,6 +2,8 @@ package application.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -30,5 +32,9 @@ public class UserInteractionController implements Initializable {
         buttons.setPadding(new Insets(15, 15, 15, 18));
         buttons.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
         innerAp.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
+    }
+    
+    public void handle(ActionEvent event) {
+        
     }
 }
