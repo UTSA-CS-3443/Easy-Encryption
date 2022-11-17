@@ -65,6 +65,7 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
         }
         Main.primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(layout);
+        scene.getStylesheets().add(Main.css);
         Main.primaryStage.setScene(scene);
         Main.primaryStage.show();
     }

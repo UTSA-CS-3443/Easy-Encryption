@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {
     public static Stage primaryStage;
     public static BorderPane layout;
+    public static String css;
 
     public static void main(String[] args) {
         launch(args);
@@ -31,6 +32,9 @@ public class Main extends Application {
         LoginController controller = loader.getController();
         Main.layout.setCenter(controller.ap);
         Scene scene = new Scene(Main.layout);
+        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        css = this.getClass().getResource("application.css").toExternalForm();
+        scene.getStylesheets().add(css);
         Main.primaryStage = primaryStage;
         Main.primaryStage.setScene(scene);
         Main.primaryStage.show();
