@@ -45,7 +45,7 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
         int randIndex = random.nextInt(6);
         for (int i = 0; i < 5; i++)
             imgNumber[i] = i + 1;
-        ap.setStyle("-fx-border-color: black; -fx-border-width: 2px 2px 2px 2px");
+        //ap.setStyle("-fx-border-color: black; -fx-border-width: 2px 2px 2px 2px");
         login.setText("Login");
         password.setSkin(new PasswordSkin(password));
         userImg = new Image("file:data/icon" + imgNumber[randIndex] + ".png", false);

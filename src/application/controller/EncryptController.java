@@ -43,8 +43,9 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
         apParent.setBackground(new Background(
                 new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         buttons.setSpacing(10);
-        buttons.setPadding(new Insets(15, 15, 15, 18));
-        buttons.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
+        buttons.setPadding(new Insets(30, 30, 30, 18));
+        //buttons.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
+        buttons.getStyleClass().add("hbox");
         ap1.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
         ap2.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
         apChild1.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
