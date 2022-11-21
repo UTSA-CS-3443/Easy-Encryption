@@ -1,3 +1,9 @@
+/**
+ * Loaders.java is a collection of loader methods to change scenes in the controllers.
+ * For EasyEncryption Project
+ * Author: Daniel Botello IV
+ * 
+ */
 package application.model;
 
 import application.Main;
@@ -28,7 +34,9 @@ public class Loaders {
         try {
             Parent root = FXMLLoader
                     .load(getClass().getResource("/application/view/" + file));
-            Main.primaryStage.setScene(new Scene(root, 800, 800));
+            Scene scene = new Scene(root, 750, 600);
+            scene.getStylesheets().add(Main.css);
+            Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,13 +51,15 @@ public class Loaders {
 
     /*
      * 
-     * Loads Encrypt view scene. TODO: Update name of scene if different.
+     * Loads Encrypt view scene.
      */
     public void loadSceneEncrypt() {
         try {
             Parent root = FXMLLoader
-                    .load(getClass().getResource("/application/view/EncryptView.fxml"));
-            Main.primaryStage.setScene(new Scene(root, 800, 800));
+                    .load(getClass().getResource("/application/view/EncryptView1.fxml"));
+            Scene scene = new Scene(root, 800, 600);
+            scene.getStylesheets().add(Main.css);
+            Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,13 +67,15 @@ public class Loaders {
     }
 
     /**
-     * Loads decrypt view scene TODO: Update name of scene if different.
+     * Loads decrypt view scene
      */
     public void loadSceneDecrypt() {
         try {
             Parent root = FXMLLoader
-                    .load(getClass().getResource("/application/view/DecryptView.fxml"));
-            Main.primaryStage.setScene(new Scene(root, 800, 800));
+                    .load(getClass().getResource("/application/view/DecryptView1.fxml"));
+            Scene scene = new Scene(root, 750, 600);
+            scene.getStylesheets().add(Main.css);
+            Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,13 +83,15 @@ public class Loaders {
     }
 
     /**
-     * loads vault scene. TODO: Update name of scene if different.
+     * loads vault scene.
      */
     public void loadSceneVault() {
         try {
             Parent root = FXMLLoader
-                    .load(getClass().getResource("/application/view/VaultView.fxml"));
-            Main.primaryStage.setScene(new Scene(root, 800, 800));
+                    .load(getClass().getResource("/application/view/VaultView1.fxml"));
+            Scene scene = new Scene(root, 750, 600);
+            scene.getStylesheets().add(Main.css);
+            Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,13 +99,15 @@ public class Loaders {
     }
 
     /**
-     * loads Saved keys scene. TODO: Update name of scene if different.
+     * loads Saved keys scene. 
      */
     public void loadSceneKeys() {
         try {
             Parent root = FXMLLoader
-                    .load(getClass().getResource("/application/view/SavedKeysView.fxml"));
-            Main.primaryStage.setScene(new Scene(root, 800, 800));
+                    .load(getClass().getResource("/application/view/SavedKeysView1.fxml"));
+            Scene scene = new Scene(root, 750, 600);
+            scene.getStylesheets().add(Main.css);
+            Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -99,14 +115,16 @@ public class Loaders {
     }
 
     /**
-     * loads the login scene, call when log off button is pressed. TODO: Update name
-     * of scene if different.
+     * loads the login scene, call when log off button is pressed. 
+     * 
      */
     public void loadSceneLogout() {
         try {
             Parent root = FXMLLoader
-                    .load(getClass().getResource("/application/view/LoginView.fxml"));
-            Main.primaryStage.setScene(new Scene(root, 800, 800));
+                    .load(getClass().getResource("/application/view/Login.fxml"));
+            Scene scene = new Scene(root, 750, 600);
+            scene.getStylesheets().add(Main.css);
+            Main.primaryStage.setScene(scene);
             Main.primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
