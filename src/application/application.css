@@ -1,5 +1,29 @@
+/* CSS for Login.fxml */
 #bPane{
 	-fx-background-image: url("../../data/bg1.png");
+}
+
+#ap{
+	-fx-background-color: #65655e;
+	    -fx-background-insets: 0,1,4,5,6;
+    	-fx-background-radius: 9,8,5,4,3;
+}
+
+/* CSS for UserInteraction.fxml */
+#outerAp{
+	-fx-background-image: url("../../data/bg2.png");
+}
+
+#innerAp{
+}
+
+
+
+/*General Global CSS */
+.hbox{
+		-fx-background-color: #65655e;
+	    -fx-background-insets: 0,1,4,5,6;
+    	-fx-background-radius: 9,8,5,4,3;
 }
 
 .button {
