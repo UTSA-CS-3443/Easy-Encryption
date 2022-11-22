@@ -11,15 +11,31 @@
 
 /* CSS for UserInteraction.fxml */
 #outerAp{
-	-fx-background-image: url("../../data/bg2.png");
+	
+	-fx-background-image: url("../../data/bg3.png");
 }
 
-#innerAp{
+/* CSS for EncryptView1 */
+#apParent{
+	-fx-background-color: #0198fc;
 }
 
+#regFileContent{
+	-fx-background-color: #ffffff;
+}
+
+#encryptFileContent{
+	-fx-background-color: #ffffff;
+}
 
 
 /*General Global CSS */
+#innerAp{
+	
+	/* -fx-background-color: #65655e; For dark mode*/
+	-fx-background-color: #ffffff;
+}
+
 .hbox{
 		-fx-background-color: #65655e;
 	    -fx-background-insets: 0,1,4,5,6;
