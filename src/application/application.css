@@ -24,7 +24,16 @@
 
 /* CSS for EncryptView1 */
 #apParent{
-	-fx-background-color: #0198fc;
+	/*-fx-background-color: #0198fc; */
+	-fx-background-image: url("../../data/bg3.png");
+}
+
+#apChild2{
+	-fx-background-color: #65655e;
+}
+
+#apChild1{
+	-fx-background-color: #65655e;
 }
 
 #regFileContent{
