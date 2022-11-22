@@ -49,6 +49,7 @@
     	-fx-background-radius: 9,8,5,4,3;
 }
 
+/* TODO: Figure out good design for buttons */
 .button {
     -fx-background-color: 
         linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),
