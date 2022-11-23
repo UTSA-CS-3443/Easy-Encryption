@@ -1,5 +1,6 @@
 package application.controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
@@ -18,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -29,6 +31,8 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
     private TextField username;
     @FXML
     private PasswordField password;
+    @FXML 
+    private ImageView banner;
     @FXML
     private Button login;
     @FXML
@@ -51,6 +55,14 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
         userImg = new Image("file:data/icon" + imgNumber[randIndex] + ".png", false);
         circle.setFill(new ImagePattern(userImg));
         circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.BLACK));
+        try 
+        {
+        	banner.setImage(new Image(new FileInputStream("./data/banner.jpg")));
+    	} catch (Exception e) 
+        {
+    		e.printStackTrace();
+    	}
+    	
     }
 
     @Override
