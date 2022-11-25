@@ -1,16 +1,20 @@
 package application.controller;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import application.Main;
 import application.model.Loaders;
-import application.model.PasswordSkin;
 import application.model.Users;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -21,46 +25,56 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class LoginController implements EventHandler<ActionEvent>, Initializable {
-	@FXML
-	private TextField username;
-	@FXML
-	private PasswordField password;
-	@FXML 
-	private ImageView banner;
-	@FXML
-	private Button login;
-	@FXML
-	private Circle circle;
-	@FXML
-	public AnchorPane ap;
-	private Random random; 
-	public static String currentUser, currentPassword;
-	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		Users users = new Users();
-		users.loadAllUsers("data/login.csv");
-		int[] imgNumber = new int[5]; 
-		random = new Random();
-		int randIndex = random.nextInt(6);
-		for (int i=0; i < 5; i++) imgNumber[i] = i + 1; 
-		login.setText("Login");
-		password.setSkin(new PasswordSkin(password));
-		circle.setFill(new ImagePattern( new Image("file:data/icon"+imgNumber[randIndex]+".png", false))); 
-		circle.setEffect(new DropShadow(+25d, 0d, +2d, Color.BLACK));
-		try { banner.setImage(new Image(new FileInputStream("./data/banner.jpg"))); } 
-		catch (Exception e) { e.printStackTrace(); }
-	}
+    @FXML
+    private TextField username;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private ImageView banner;
+    @FXML
+    private Button login;
+    @FXML
+    private Circle circle;
+    @FXML
+    public AnchorPane ap;
 
-	@Override
-	public void handle(ActionEvent event) {	
-		if (Users.validate(username.getText(), password.getText())) {
-			Loaders loader = new Loaders();
-			loader.loadSceneIteraction();
-			LoginController.currentUser = username.getText();
-			LoginController.currentPassword = password.getText();
-		}
-	}
+    @FXML
+    private Text loginFail;
+
+    private Random random;
+    public static String currentUser, currentPassword;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Users users = new Users();
+        users.loadAllUsers("data/login.csv");
+        int[] imgNumber = new int[5];
+        random = new Random();
+        int randIndex = random.nextInt(5);
+        for (int i = 0; i < 5; i++)
+            imgNumber[i] = i + 1;
+        circle.setFill(new ImagePattern(new Image("file:data/icon" + imgNumber[randIndex] + ".png", false)));
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+
+    }
+
+    public void handleLogin(ActionEvent event) {
+        String inputUsername = username.getText();
+        String inputPassword = password.getText();
+        if (Users.validate(inputUsername, inputPassword)) {
+            loginFail.setVisible(false);
+            Loaders.loadScene("UserInteraction.fxml");
+            LoginController.currentUser = inputUsername;
+            LoginController.currentPassword = inputPassword;
+        } else {
+            loginFail.setVisible(true);
+        }
+    }
 }

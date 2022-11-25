@@ -1,3 +1,4 @@
+
 package application.controller;
 
 import java.net.URL;
@@ -33,62 +34,56 @@ public class UserInteractionController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        outerAp.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-        outerAp.setBackground(new Background(
-                new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-        buttons.setSpacing(10);
-        buttons.setPadding(new Insets(30, 30, 30, 18));
-        //buttons.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-        buttons.getStyleClass().add("hbox");
-        innerAp.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-        //Sets background color to blue after CSS is applied. Delete bottom line for default value of white. -dbiv
-        innerAp.setStyle("-fx-background-color: #0198fc;");
-        
         setImages();
     }
-    
+
     public void handle(ActionEvent event) {
+
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
-        
+
         if (buttonText.equals("Encrypt"))
-        	Loaders.loadScene("EncryptView1.fxml");
+            Loaders.loadScene("EncryptView1.fxml");
         else if (buttonText.equals("Decrypt"))
-        	Loaders.loadScene("DecryptView1.fxml");
+            Loaders.loadScene("DecryptView1.fxml");
         else if (buttonText.equals("Vault"))
-        	Loaders.loadScene("VaultView1.fxml");
+            Loaders.loadScene("VaultView1.fxml");
         else if (buttonText.equals("Saved Keys"))
-        	Loaders.loadScene("SavedKeysView1.fxml");
+            Loaders.loadScene("SavedKeysView1.fxml");
     }
-    
+
     /**
      * handleCircle handle mouse events generated from the 4 circles.
      * 
      * @param e
      */
     public void handleCircle(MouseEvent e) {
-    	Circle circle = (Circle) e.getSource();
-		String circleText = circle.getId();
-		
-		if (circleText.equals("eCircle")) Loaders.loadScene("EncryptView1.fxml");
-		else if (circleText.equals("dCircle")) Loaders.loadScene("DecryptView1.fxml");
-		else if (circleText.equals("vCircle")) Loaders.loadScene("VaultView1.fxml");
-		else if (circleText.equals("skCircle")) Loaders.loadScene("SavedKeysView1.fxml");
+        Circle circle = (Circle) e.getSource();
+        String circleText = circle.getId();
+
+        if (circleText.equals("eCircle"))
+            Loaders.loadScene("EncryptView1.fxml");
+        else if (circleText.equals("dCircle"))
+            Loaders.loadScene("DecryptView1.fxml");
+        else if (circleText.equals("vCircle"))
+            Loaders.loadScene("VaultView1.fxml");
+        else if (circleText.equals("skCircle"))
+            Loaders.loadScene("SavedKeysView1.fxml");
     }
-    
+
     /**
      * Cleans up code in initialize method. Sets images within each circle.
      * 
      * 
      */
     public void setImages() {
-    	 eCircle.setFill(new ImagePattern(new Image("file:data/encrypt.png", false)));
-         eCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.RED));
-         dCircle.setFill(new ImagePattern(new Image("file:data/decrypt.png", false)));
-         dCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.BLUE));
-         vCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITE));
-         vCircle.setFill(new ImagePattern(new Image("file:data/vault.jpg", false)));
-         skCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITE));
-         skCircle.setFill(new ImagePattern(new Image("file:data/keys.png", false)));
+        eCircle.setFill(new ImagePattern(new Image("file:data/encrypt.png", false)));
+        eCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.RED));
+        dCircle.setFill(new ImagePattern(new Image("file:data/decrypt.png", false)));
+        dCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.BLUE));
+        vCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITE));
+        vCircle.setFill(new ImagePattern(new Image("file:data/vault.jpg", false)));
+        skCircle.setEffect(new DropShadow(+25d, 0d, +2d, Color.WHITE));
+        skCircle.setFill(new ImagePattern(new Image("file:data/keys.png", false)));
     }
 }

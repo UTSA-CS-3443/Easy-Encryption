@@ -1,26 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane fx:id="outerAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserInteractionController">
+<AnchorPane fx:id="outerAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" styleClass="outerAp" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.UserInteractionController">
    <children>
-      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="395.0">
+      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="395.0" styleClass="buttons" stylesheets="@../application.css">
          <children>
-            <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt" />
-            <Button fx:id="decrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Decrypt" />
-            <Button fx:id="vault" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Vault" />
-            <Button fx:id="savedKeys" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Saved Keys" />
+            <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="decrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Decrypt">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="vault" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Vault">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="savedKeys" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Saved Keys">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="innerAp" layoutX="25.0" layoutY="105.0" prefHeight="470.0" prefWidth="700.0">
+      <AnchorPane fx:id="innerAp" layoutX="25.0" layoutY="105.0" prefHeight="470.0" prefWidth="700.0" style="-fx-background-color: #0198fc;" styleClass="innerAp" stylesheets="@../application.css">
          <children>
-            <Circle fx:id="eCircle" fill="WHITE" layoutX="206.0" layoutY="121.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="dCircle" fill="WHITE" layoutX="468.0" layoutY="121.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="vCircle" fill="WHITE" layoutX="206.0" layoutY="325.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="skCircle" fill="WHITE" layoutX="468.0" layoutY="325.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="eCircle" fill="WHITE" layoutX="186.0" layoutY="101.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="dCircle" fill="WHITE" layoutX="488.0" layoutY="101.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="vCircle" fill="WHITE" layoutX="186.0" layoutY="335.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="skCircle" fill="WHITE" layoutX="488.0" layoutY="335.0" onMouseClicked="#handleCircle" radius="90.0" stroke="BLACK" strokeType="INSIDE" />
+            <Text layoutX="137.0" layoutY="219.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Encrypt" textAlignment="CENTER" wrappingWidth="98.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="439.0" layoutY="219.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Decrypt" textAlignment="CENTER" wrappingWidth="98.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="137.0" layoutY="453.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Vault" textAlignment="CENTER" wrappingWidth="98.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="414.0" layoutY="453.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Saved Keys" textAlignment="CENTER" wrappingWidth="148.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
          </children></AnchorPane>
    </children>
 </AnchorPane>

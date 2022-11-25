@@ -21,43 +21,36 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 public class SavedKeysController implements EventHandler<ActionEvent>, Initializable {
-	@FXML
-	private AnchorPane outerAp, innerAp;
-	@FXML
-	private HBox buttons;
-	@FXML
-	private Button encrypt, decrypt, vault, savedKeys;
-    @FXML 
-    private Label state; 
-    @FXML 
+    @FXML
+    private AnchorPane outerAp, innerAp;
+    @FXML
+    private HBox buttons;
+    @FXML
+    private Button encrypt, decrypt, vault, savedKeys;
+    @FXML
+    private Label state;
+    @FXML
     private ListView<String> keys;
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		outerAp.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-		outerAp.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-		buttons.setSpacing(10);
-        buttons.setPadding(new Insets(30, 30, 30, 18));
-        buttons.getStyleClass().add("hbox");
-        innerAp.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-        //state.setText("saved keys test");
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         Users users = new Users();
         users.addSavedKeys("data/login.csv");
         keys.getItems().addAll(users.getSavedKeys());
-	}
-	
-	@Override
-	public void handle(ActionEvent event) {
-		Loaders loader = new Loaders();
-		Button button = (Button) event.getSource();
-		String buttonText = button.getText();
-		
-		if (buttonText.equals("Encrypt")) 
-			loader.loadSceneEncrypt();
-		else if (buttonText.equals("Decrypt")) 
-			loader.loadSceneDecrypt();
-		else if (buttonText.equals("Vault")) 
-			loader.loadSceneVault();
-	}
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+        Loaders loader = new Loaders();
+        Button button = (Button) event.getSource();
+        String buttonText = button.getText();
+
+        if (buttonText.equals("Encrypt"))
+            Loaders.loadScene("EncryptView1.fxml");
+        else if (buttonText.equals("Decrypt"))
+            Loaders.loadScene("DecryptView1.fxml");
+        else if (buttonText.equals("Vault"))
+            Loaders.loadScene("VaultView1.fxml");
+    }
 
 }

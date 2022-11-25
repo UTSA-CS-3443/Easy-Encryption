@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -10,17 +11,29 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.EncryptController">
+<AnchorPane fx:id="apParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.EncryptController">
    <children>
-      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="395.0">
+      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="395.0" styleClass="buttons" stylesheets="@../application.css">
          <children>
-            <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt" />
-            <Button fx:id="decrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Decrypt" />
-            <Button fx:id="vault" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Vault" />
-            <Button fx:id="savedKeys" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Saved Keys" />
+            <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="decrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Decrypt">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="vault" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Vault">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
+            <Button fx:id="savedKeys" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Saved Keys">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin></Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="ap1" layoutY="105.0" prefHeight="484.0" prefWidth="400.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane fx:id="ap1" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">
          <children>
             <AnchorPane fx:id="apChild1" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
                <children>
@@ -30,10 +43,10 @@
                      </font>
                   </Label>
                </children></AnchorPane>
-            <Button fx:id="fopen" layoutX="24.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Open File" />
-            <Button fx:id="fopen1" layoutX="289.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt File" />
+            <Button fx:id="fopen" layoutX="24.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Open File" />
+            <Button fx:id="fopen1" layoutX="262.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Encrypt File" />
          </children></AnchorPane>
-      <AnchorPane fx:id="ap2" layoutX="400.0" layoutY="105.0" prefHeight="484.0" prefWidth="400.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane fx:id="ap2" layoutX="400.0" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">
          <children>
             <AnchorPane fx:id="apChild2" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
                <children>

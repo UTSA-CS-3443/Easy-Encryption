@@ -75,3 +75,19 @@
     -fx-text-fill: white;
     -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 1, 0.0 , 0 , 1);
 }
+
+.buttons {
+	-fx-background-color: #65655e;
+	-fx-border-radius: 10;
+	-fx-background-radius: 10;
+}
+
+.outerAp {
+	-fx-border-color: black;
+	-fx-border-width: 3px 3px 3px 3px;
+}
+
+.innerAp {
+	-fx-border-width: 3px 3px 3px 3px;
+	-fx-background-color: #0198fc;
+}
