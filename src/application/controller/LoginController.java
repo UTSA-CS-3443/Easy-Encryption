@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import application.Main;
+import application.model.Loaders;
 import application.model.PasswordSkin;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -64,7 +65,7 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
     	}
     	
     }
-
+    
     @Override
     public void handle(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(
@@ -80,5 +81,9 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
         scene.getStylesheets().add(Main.css);
         Main.primaryStage.setScene(scene);
         Main.primaryStage.show();
+    }
+    
+    public void handleTest(ActionEvent event) {
+    	Loaders.loadScene("UserInteraction.fxml");
     }
 }

@@ -37,17 +37,16 @@ public class UserInteractionController implements Initializable {
     }
     
     public void handle(ActionEvent event) {
-    	Loaders loader = new Loaders();
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
         
         if (buttonText.equals("Encrypt"))
-        	loader.loadSceneEncrypt();
+        	Loaders.loadScene("EncryptView1.fxml");
         else if (buttonText.equals("Decrypt"))
-            loader.loadSceneDecrypt();
+        	Loaders.loadScene("DecryptView1.fxml");
         else if (buttonText.equals("Vault"))
-            loader.loadSceneVault();
+        	Loaders.loadScene("VaultView1.fxml");
         else if (buttonText.equals("Saved Keys"))
-            loader.loadSceneKeys();
+        	Loaders.loadScene("SavedKeysView1.fxml");
     }
 }

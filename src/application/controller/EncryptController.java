@@ -54,16 +54,15 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
 
     @Override
     public void handle(ActionEvent event) {
-        Loaders loader = new Loaders();
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
 
         if (buttonText.equals("Decrypt"))
-            loader.loadSceneDecrypt();
+            Loaders.loadScene("DecryptView1.fxml");
         else if (buttonText.equals("Vault"))
-            loader.loadSceneVault();
+            Loaders.loadScene("VaultView1.fxml");
         else if (buttonText.equals("Saved Keys"))
-            loader.loadSceneKeys();
+            Loaders.loadScene("SavedKeysView1.fxml");
         else if (buttonText.equals("Open File")) {
             FileChooser fChooser = new FileChooser();
             File file = fChooser.showOpenDialog(Main.primaryStage);

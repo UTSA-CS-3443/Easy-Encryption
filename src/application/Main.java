@@ -19,24 +19,20 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        Main.primaryStage = primaryStage;
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/Login.fxml"));
+    public void start(Stage stage) {
         try {
-            Main.layout = (BorderPane) loader.load();
-        } catch (IOException e) {
+            primaryStage = stage;
+
+            BorderPane root = new BorderPane();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/Login.fxml"));
+            root = (BorderPane) loader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        Main.layout
-                .setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
-        LoginController controller = loader.getController();
-        Main.layout.setCenter(controller.ap);
-        Scene scene = new Scene(Main.layout);
-        //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-        css = this.getClass().getResource("application.css").toExternalForm();
-        scene.getStylesheets().add(css);
-        Main.primaryStage = primaryStage;
-        Main.primaryStage.setScene(scene);
-        Main.primaryStage.show();
     }
 }
