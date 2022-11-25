@@ -25,7 +25,8 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
 	private HBox buttons;
 	@FXML
 	private Button encrypt, decrypt, vault, savedKeys;
-    @FXML private Label state; 
+    @FXML 
+    private Label state; 
 
 
 	@Override
@@ -33,8 +34,8 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
 		outerAp.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
 		outerAp.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 		buttons.setSpacing(10);
-        buttons.setPadding(new Insets(15, 15, 15, 18));
-        buttons.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
+        buttons.setPadding(new Insets(30, 30, 30, 18));
+        buttons.getStyleClass().add("hbox");
         innerAp.setStyle("-fx-border-color: black; -fx-border-width: 3px 3px 3px 3px");
         state.setText("decrypt test");
 	}
@@ -44,9 +45,12 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
 		Button button = (Button) event.getSource();
 		String buttonText = button.getText();
 		
-		if (buttonText.equals("Encrypt")) loader.loadSceneEncrypt();
-		else if (buttonText.equals("Vault")) loader.loadSceneVault();
-		else if (buttonText.equals("SavedKeys")) loader.loadSceneKeys();
+		if (buttonText.equals("Encrypt")) 
+			loader.loadSceneEncrypt();
+		else if (buttonText.equals("Vault")) 
+			loader.loadSceneVault();
+		else if (buttonText.equals("SavedKeys"))
+			loader.loadSceneKeys();
 	}
 	
 }
