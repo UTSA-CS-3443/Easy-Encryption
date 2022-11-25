@@ -27,7 +27,7 @@
                   <Font name="System Bold" size="14.0" />
                </font></TextField>
             <Circle fx:id="circle" fill="WHITE" layoutX="201.0" layoutY="115.0" radius="85.0" stroke="BLACK" strokeType="INSIDE" />
-            <Button fx:id="login" layoutX="217.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleTest" prefHeight="25.0" prefWidth="58.0">
+            <Button fx:id="login" layoutX="217.0" layoutY="310.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="58.0">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>

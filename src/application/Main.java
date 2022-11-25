@@ -1,5 +1,4 @@
 package application;
-
 import java.io.IOException;
 import application.controller.LoginController;
 import javafx.application.Application;
