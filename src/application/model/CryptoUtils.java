@@ -1,8 +1,10 @@
 package application.model;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -57,5 +59,26 @@ public class CryptoUtils {
                 | IllegalBlockSizeException | IOException ex) {
             throw new CryptoException("Error encrypting/decrypting file", ex);
         }
+    }
+    
+    public static String readEncrypted(File input)
+    {
+        
+        String ret = "";
+        String tmp = "";
+        BufferedReader buffer;
+        try {
+         buffer = new BufferedReader(new FileReader(input));
+            while((tmp = buffer.readLine())!= null)
+            {
+                ret+=tmp;
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            System.out.print("ERROR: unable to read Encrypted");
+            e.printStackTrace();
+            
+        }
+        return ret;
     }
 }

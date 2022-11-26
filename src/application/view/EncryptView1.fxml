@@ -45,18 +45,24 @@
          <children>
             <AnchorPane fx:id="apChild1" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
                <children>
-                  <TextArea fx:id="textInput" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" />
+                  <Label fx:id="textInput" alignment="TOP_LEFT" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" style="-fx-background-color: white;" />
                </children></AnchorPane>
             <Button fx:id="fopen" layoutX="24.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Open File" />
             <Button fx:id="fopen1" layoutX="262.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Encrypt" />
+            <TextField fx:id="keyInput" layoutX="24.0" prefHeight="39.0" prefWidth="357.0" promptText="Enter a 16 character key" />
          </children></AnchorPane>
       <AnchorPane fx:id="ap2" layoutX="400.0" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">
          <children>
             <AnchorPane fx:id="apChild2" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
                <children>
-                  <TextArea fx:id="textOutput" editable="false" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" wrapText="true" />
+                  <Label fx:id="textOutput" alignment="TOP_LEFT" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" style="-fx-background-color: white;" />
                </children></AnchorPane>
          </children>
       </AnchorPane>
+      <Label layoutX="563.0" layoutY="35.0" text="Encrypt">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

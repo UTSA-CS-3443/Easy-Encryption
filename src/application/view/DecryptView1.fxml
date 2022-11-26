@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="outerAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: #ffffff;" styleClass="outerAp" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DecryptController">
+<AnchorPane fx:id="apParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="outerAp" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.DecryptController">
    <children>
       <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="445.0" styleClass="buttons" stylesheets="@../application.css">
          <children>
@@ -20,7 +20,7 @@
                   <Insets left="10.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="encrypt" layoutX="25.0" layoutY="14.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
+            <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />
                </HBox.margin></Button>
@@ -41,13 +41,28 @@
             <Insets right="10.0" />
          </padding>
       </HBox>
-      <AnchorPane fx:id="innerAp" layoutX="25.0" layoutY="105.0" prefHeight="470.0" prefWidth="700.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane fx:id="ap1" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">
          <children>
-            <Label fx:id="state" layoutX="315.0" layoutY="152.0" prefHeight="46.0" prefWidth="135.0" text="Decrypt">
-               <font>
-                  <Font size="31.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="apChild1" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
+               <children>
+                  <Label fx:id="textInput" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" style="-fx-background-color: white;" />
+               </children></AnchorPane>
+            <Button fx:id="fopen" layoutX="24.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Open File" />
+            <Button fx:id="fopen1" layoutX="262.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Decrypt" />
+            <TextField fx:id="keyInput" layoutX="24.0" prefHeight="39.0" prefWidth="357.0" promptText="Enter a 16 character key" />
          </children></AnchorPane>
+      <AnchorPane fx:id="ap2" layoutX="400.0" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">
+         <children>
+            <AnchorPane fx:id="apChild2" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
+               <children>
+                  <Label fx:id="textOutput" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" style="-fx-background-color: white;" />
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+      <Label layoutX="559.0" layoutY="35.0" text="Decrypt">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

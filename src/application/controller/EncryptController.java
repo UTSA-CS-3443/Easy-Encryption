@@ -19,6 +19,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -27,13 +28,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
+import application.model.CryptoUtils;
+
 public class EncryptController implements EventHandler<ActionEvent>, Initializable {
     @FXML
     private AnchorPane apParent, ap1, ap2, apChild1, apChild2;
     @FXML
     private HBox buttons;
     @FXML
-    private TextArea textInput, textOutput;
+    private Label textInput, textOutput;
+    @FXML
+    private TextField keyInput;
     @FXML
     private Button encrypt, decrypt, vault, savedKeys, fopen, home;
     private StringBuilder bookText = null;
@@ -89,29 +94,29 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
                 System.out.print(bookText.toString());
             }
             try {
-                // " salt " explanation
-                // https://en.wikipedia.org/wiki/Salt_(cryptography)
-
+                
                 Users users = new Users();
                 String doesFileExist = users.doesFileExist("data/login.csv", file.getName());
-
+                
                 if (doesFileExist == null) {
-                    Encryption encryption = new Encryption();
-                    SecureRandom random = new SecureRandom();
-                    byte bytes[] = new byte[20];
-                    random.nextBytes(bytes);
-
-                    SecretKey secretKey = Encryption.getKeyFromPassword(LoginController.currentPassword,
-                            bytes.toString());
-                    encryptRes = encryption.encrypt(bookText.toString(), secretKey);
-                    textOutput.setText(encryptRes);
-                    users.addKeyAndFile("data/login.csv", LoginController.currentUser,
-                            "," + file.getName() + "," + encryptRes);
+                  if(keyInput.getText().length()==16)
+                  {
+                  String key = keyInput.getText();
+                  File encryptedOutFile = new File(file.getPath()+".encrypted.txt");
+                  CryptoUtils.encrypt(key, file, encryptedOutFile);
+                  System.out.print("This is the cryptoUtils test:"+CryptoUtils.readEncrypted(encryptedOutFile));
+                  encryptRes = CryptoUtils.readEncrypted(encryptedOutFile);
+                  textOutput.setText(encryptRes);
+                  users.addKeyAndFile("data/login.csv", LoginController.currentUser,
+                          "," + file.getName() + "," + key);
+                  }
+                  else
+                  {
+                      keyInput.setPromptText("ERROR: Invalid key (16 char)");
+                  }
                 } else
                     textOutput.setText(doesFileExist);
-
-                // String d = encryption.decrypt(encryptRes, secretKey, 128);
-                // test.setText(d);
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
