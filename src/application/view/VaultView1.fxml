@@ -40,7 +40,10 @@
       </HBox>
       <AnchorPane fx:id="innerAp" layoutX="25.0" layoutY="105.0" prefHeight="430.0" prefWidth="700.0" style="-fx-background-color: #ffffff;">
          <children>
-            <TextArea fx:id="notepad" prefHeight="430.0" prefWidth="700.0" />
+            <TextArea fx:id="notepad" prefHeight="430.0" prefWidth="700.0" promptText="Type something here...">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
          </children></AnchorPane>
       <Label fx:id="state" layoutX="563.0" layoutY="34.0" prefHeight="46.0" prefWidth="135.0" text="Vault">
          <font>
