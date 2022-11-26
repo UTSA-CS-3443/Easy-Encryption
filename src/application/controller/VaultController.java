@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -24,7 +25,9 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
     @FXML
     private HBox buttons;
     @FXML
-    private Button encrypt, decrypt, vault, savedKeys, home;
+    private Button encrypt, decrypt, vault, savedKeys, home, save;
+    @FXML
+    private TextArea notepad;
     @FXML
     private Label state;
 
