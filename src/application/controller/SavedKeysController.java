@@ -41,7 +41,7 @@ public class SavedKeysController implements EventHandler<ActionEvent>, Initializ
 
     @Override
     public void handle(ActionEvent event) {
-        Loaders loader = new Loaders();
+
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
 
