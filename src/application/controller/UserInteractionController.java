@@ -28,7 +28,7 @@ public class UserInteractionController implements Initializable {
     @FXML
     private HBox buttons;
     @FXML
-    private Button encrypt, decrypt, vault, savedKeys;
+    private Button encrypt, decrypt, vault, savedKeys, home;
     @FXML
     private Circle eCircle, dCircle, vCircle, skCircle;
 
@@ -50,6 +50,8 @@ public class UserInteractionController implements Initializable {
             Loaders.loadScene("VaultView1.fxml");
         else if (buttonText.equals("Saved Keys"))
             Loaders.loadScene("SavedKeysView1.fxml");
+        else if (buttonText.equals("Home"))
+            Loaders.loadScene("UserInteraction.fxml");
     }
 
     /**

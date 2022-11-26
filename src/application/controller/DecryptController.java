@@ -24,7 +24,7 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
     @FXML
     private HBox buttons;
     @FXML
-    private Button encrypt, decrypt, vault, savedKeys;
+    private Button encrypt, decrypt, vault, savedKeys, home;
     @FXML
     private Label state;
 
@@ -43,6 +43,8 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
             Loaders.loadScene("VaultView1.fxml");
         else if (buttonText.equals("SavedKeys"))
             Loaders.loadScene("SavedKeysView1.fxml");
+        else if (buttonText.equals("Home"))
+            Loaders.loadScene("UserInteraction.fxml");
     }
 
 }

@@ -11,10 +11,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="outerAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VaultController">
+<AnchorPane fx:id="outerAp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" styleClass="outerAp" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.VaultController">
    <children>
-      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="395.0" styleClass="buttons" stylesheets="@../application.css">
+      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="445.0" styleClass="buttons" stylesheets="@../application.css">
          <children>
+            <Button fx:id="home" layoutX="20.0" layoutY="30.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Home">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin>
+            </Button>
             <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />
@@ -32,6 +37,9 @@
                   <Insets left="10.0" top="20.0" />
                </HBox.margin></Button>
          </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
       </HBox>
       <AnchorPane fx:id="innerAp" layoutX="25.0" layoutY="105.0" prefHeight="470.0" prefWidth="700.0" style="-fx-background-color: #ffffff;">
          <children>

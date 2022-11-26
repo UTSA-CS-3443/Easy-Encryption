@@ -11,10 +11,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.EncryptController">
+<AnchorPane fx:id="apParent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="outerAp" stylesheets="@../application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.EncryptController">
    <children>
-      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="395.0" styleClass="buttons" stylesheets="@../application.css">
+      <HBox fx:id="buttons" layoutX="25.0" layoutY="14.0" prefHeight="66.0" prefWidth="445.0" styleClass="buttons" stylesheets="@../application.css">
          <children>
+            <Button fx:id="home" layoutX="20.0" layoutY="30.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Home">
+               <HBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </HBox.margin>
+            </Button>
             <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />
@@ -32,34 +37,24 @@
                   <Insets left="10.0" top="20.0" />
                </HBox.margin></Button>
          </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
       </HBox>
       <AnchorPane fx:id="ap1" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">
          <children>
             <AnchorPane fx:id="apChild1" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
                <children>
-                  <Label fx:id="regFileContent" alignment="TOP_LEFT" layoutX="10.0" layoutY="7.0" prefHeight="372.0" prefWidth="350.0">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
+                  <TextArea fx:id="textInput" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" />
                </children></AnchorPane>
             <Button fx:id="fopen" layoutX="24.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Open File" />
-            <Button fx:id="fopen1" layoutX="262.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Encrypt File" />
+            <Button fx:id="fopen1" layoutX="262.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Encrypt" />
          </children></AnchorPane>
       <AnchorPane fx:id="ap2" layoutX="400.0" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">
          <children>
             <AnchorPane fx:id="apChild2" layoutX="15.0" layoutY="50.0" prefHeight="385.0" prefWidth="370.0">
                <children>
-                  <Label fx:id="encryptFileContent" alignment="TOP_LEFT" layoutX="10.0" layoutY="7.0" prefHeight="136.0" prefWidth="350.0">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="test" alignment="TOP_LEFT" layoutX="14.0" layoutY="208.0" prefHeight="136.0" prefWidth="350.0">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
+                  <TextArea fx:id="textOutput" editable="false" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" wrapText="true" />
                </children></AnchorPane>
          </children>
       </AnchorPane>

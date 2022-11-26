@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -32,9 +33,9 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
     @FXML
     private HBox buttons;
     @FXML
-    private Button encrypt, decrypt, vault, savedKeys, fopen;
+    private TextArea textInput, textOutput;
     @FXML
-    private Label regFileContent, encryptFileContent, test;
+    private Button encrypt, decrypt, vault, savedKeys, fopen, home;
     private StringBuilder bookText = null;
     private File file = null;
     private boolean isFileOpen = false;
@@ -50,6 +51,8 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
     public void handle(ActionEvent event) {
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
+        
+        System.out.println(buttonText);
 
         if (buttonText.equals("Decrypt"))
             Loaders.loadScene("DecryptView1.fxml");
@@ -57,6 +60,8 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
             Loaders.loadScene("VaultView1.fxml");
         else if (buttonText.equals("Saved Keys"))
             Loaders.loadScene("SavedKeysView1.fxml");
+        else if (buttonText.equals("Home"))
+            Loaders.loadScene("UserInteraction.fxml");
         else if (buttonText.equals("Open File")) {
             FileChooser fChooser = new FileChooser();
             file = fChooser.showOpenDialog(Main.primaryStage);
@@ -65,7 +70,6 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
 
             try {
                 scan = new Scanner(new File(file.getAbsolutePath()));
-                // System.out.println(file.getName());
 
                 while (scan.hasNextLine()) {
                     bookText.append(scan.nextLine());
@@ -76,13 +80,16 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
                 e.printStackTrace();
             }
 
-            regFileContent.setText(bookText.toString());
+            textInput.setText(bookText.toString());
             isFileOpen = true;
         }
 
-        if (isFileOpen && buttonText.equals("Encrypt File")) {
+        else if (buttonText.equals("Encrypt")) {
+            if (!isFileOpen) {
+                System.out.print(bookText.toString());
+            }
             try {
-                // " salt " explanation?
+                // " salt " explanation
                 // https://en.wikipedia.org/wiki/Salt_(cryptography)
 
                 Users users = new Users();
@@ -97,11 +104,11 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
                     SecretKey secretKey = Encryption.getKeyFromPassword(LoginController.currentPassword,
                             bytes.toString());
                     encryptRes = encryption.encrypt(bookText.toString(), secretKey);
-                    encryptFileContent.setText(encryptRes);
+                    textOutput.setText(encryptRes);
                     users.addKeyAndFile("data/login.csv", LoginController.currentUser,
                             "," + file.getName() + "," + encryptRes);
                 } else
-                    encryptFileContent.setText(doesFileExist);
+                    textOutput.setText(doesFileExist);
 
                 // String d = encryption.decrypt(encryptRes, secretKey, 128);
                 // test.setText(d);

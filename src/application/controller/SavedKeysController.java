@@ -26,7 +26,7 @@ public class SavedKeysController implements EventHandler<ActionEvent>, Initializ
     @FXML
     private HBox buttons;
     @FXML
-    private Button encrypt, decrypt, vault, savedKeys;
+    private Button encrypt, decrypt, vault, savedKeys, home;
     @FXML
     private Label state;
     @FXML
@@ -51,6 +51,8 @@ public class SavedKeysController implements EventHandler<ActionEvent>, Initializ
             Loaders.loadScene("DecryptView1.fxml");
         else if (buttonText.equals("Vault"))
             Loaders.loadScene("VaultView1.fxml");
+        else if (buttonText.equals("Home"))
+            Loaders.loadScene("UserInteraction.fxml");
     }
 
 }

@@ -60,10 +60,8 @@ public class Users {
             for (String line : allLines)
                 if (line.contains(fileName)) {
                     String[] toks = line.split(",");
-                    System.out.println(toks[2] + " " + fileName);
                     for (int i = 0; i < toks.length; i++)
                         if (toks[i].equals(fileName)) {
-                            System.out.println(toks[i + 1]);
                             return toks[i + 1];
                         }
                 }
