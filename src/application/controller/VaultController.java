@@ -51,8 +51,8 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Scanner scan = null;
-        encryptedVault = new File("vault/"+users.getName()+"EncryptedVault.txt");
-        decryptedVault = new File("vault/"+users.getName()+"DecrypedVault.txt");
+        encryptedVault = new File("vault/"+Main.users.getCurUser()+"EncryptedVault.txt");
+        decryptedVault = new File("vault/"+Main.users.getCurUser()+"DecrypedVault.txt");
         bookText = new StringBuilder();
 
         try {
