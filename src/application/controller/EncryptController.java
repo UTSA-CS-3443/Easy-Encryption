@@ -113,7 +113,7 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
                   else
                   {
                       
-                      keyInput.setPromptText("ERROR: Invalid key (16 char)");
+                      textOutput.setText("ERROR: Invalid key (16 char)");
                   }
                 } else
                     textOutput.setText(doesFileExist);
