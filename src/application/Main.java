@@ -3,9 +3,13 @@ package application;
 import java.io.IOException;
 import application.controller.LoginController;
 import application.model.Users;
+import application.model.Utils;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -25,6 +29,19 @@ public class Main extends Application {
         users = new Users();
         try {
             primaryStage = stage;
+
+            primaryStage.setOnCloseRequest((EventHandler<WindowEvent>) new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent t) {
+                    System.out.println(Utils.getRandString(16));
+                    if (users.getCurUser() != null) {
+                        System.out.println("Saving user data");
+                        users.serializeUserData();
+                    }
+                    Platform.exit();
+                    System.exit(0);
+                }
+            });
 
             BorderPane root = new BorderPane();
             FXMLLoader loader = new FXMLLoader();

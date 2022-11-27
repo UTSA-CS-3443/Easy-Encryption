@@ -18,8 +18,9 @@ import java.util.Scanner;
 import application.controller.LoginController;
 
 public class Users {
-    private static final String LOGIN_DATA = "data/login.csv";
-    
+    private static final String DATA_DIR = "data/";
+    private static final String LOGIN_DATA = DATA_DIR + "login.csv";
+
     private Scanner sc;
     private String line = "", password, line2 = "";
     private static HashMap<String, String> userInfo;
@@ -27,10 +28,11 @@ public class Users {
     private UserData userData;
     private String curUser;
     private String userDataFile;
-    
+
     public Users() {
         userInfo = new HashMap<>();
         this.loadAllUsers(LOGIN_DATA);
+        this.curUser = null;
     }
 
     public void loadAllUsers(String users) {
@@ -46,47 +48,50 @@ public class Users {
             e.printStackTrace();
         }
     }
-    
+
     public boolean validate(String username, String password) {
         if (userInfo.containsKey(password) && userInfo.containsValue(username)) {
             if (userInfo.get(password).equals(username)) {
                 this.curUser = username;
-                this.userDataFile = username + ".dat";
-                this.deserializeUserData();
+                this.userDataFile = DATA_DIR + username + ".dat";
+                boolean userLoaded = this.deserializeUserData();
+                if (!userLoaded) {
+                    this.userData = new UserData(this.curUser);
+                }
                 return true;
             }
         }
         return false;
     }
-    
+
     public void serializeUserData() {
         try {
             FileOutputStream userObjectFile = new FileOutputStream(this.userDataFile);
-            
+
             ObjectOutputStream userObjectStream = new ObjectOutputStream(userObjectFile);
-            
+
             userObjectStream.writeObject(userData);
-            
+
             userObjectFile.close();
             userObjectStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
-    public void deserializeUserData() {
+
+    public boolean deserializeUserData() {
         try {
             FileInputStream userObjectFile;
             try {
-                 userObjectFile = new FileInputStream(this.userDataFile);
+                userObjectFile = new FileInputStream(this.userDataFile);
             } catch (FileNotFoundException e) {
-                return;
+                return false;
             }
-            
+
             ObjectInputStream userObjectStream = new ObjectInputStream(userObjectFile);
-            
+
             this.userData = (UserData) userObjectStream.readObject();
-            
+
             userObjectFile.close();
             userObjectStream.close();
         } catch (IOException e) {
@@ -94,6 +99,7 @@ public class Users {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     /**
@@ -123,7 +129,7 @@ public class Users {
     public void setSavedKeys(ArrayList<String> savedKeys) {
         this.savedKeys = savedKeys;
     }
-    
+
     public HashMap<String, String> getUserinfo() {
         return this.userInfo;
     }
@@ -146,6 +152,7 @@ public class Users {
             e.printStackTrace();
         }
     }
+
     public String doesFileExist(String allUsers, String fileName) {
         Path path = Paths.get(allUsers);
 
@@ -167,6 +174,7 @@ public class Users {
 
         return null;
     }
+
     public void addSavedKeys(String file) {
         try {
             sc = new Scanner(new File(file));

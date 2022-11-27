@@ -46,11 +46,43 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
     public void initialize(URL location, ResourceBundle resources) {
         isFileOpen = false;
     }
-    
+
     String decryptRes;
-    
-    
-    
+
+    public void handleDecrypt(ActionEvent event) {
+        if (!isFileOpen) {
+            System.out.print(CryptoUtils.readEncrypted(file));
+        }
+        try {
+            File decryptedOutFile;
+            Users users = new Users();
+            String doesFileExist = users.doesFileExist("data/login.csv", file.getName());
+
+            if (doesFileExist == null) {
+                if (keyInput.getText().length() == 16) {
+                    String key = keyInput.getText();
+                    if (file.getPath().lastIndexOf("encrypted.txt") != -1) {
+                        decryptedOutFile = new File(
+                                file.getPath().substring(0, file.getPath().lastIndexOf("encrypted.txt"))
+                                        + ".decrypted.txt");
+                    } else {
+                        decryptedOutFile = new File(file.getPath() + ".decrypted.txt");
+                    }
+                    CryptoUtils.decrypt(key, file, decryptedOutFile);
+                    System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(decryptedOutFile));
+                    decryptRes = CryptoUtils.readEncrypted(decryptedOutFile);
+                    textOutput.setText(decryptRes);
+                } else {
+                    textOutput.setText("ERROR: Invalid key (16 char)");
+                }
+            } else
+                textOutput.setText(doesFileExist);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void handle(ActionEvent event) {
         Button button = (Button) event.getSource();
@@ -84,43 +116,6 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
 
             textInput.setText(CryptoUtils.readEncrypted(file));
             isFileOpen = true;
-        }
-
-        else if (buttonText.equals("Decrypt")) {
-            if (!isFileOpen) {
-                System.out.print(CryptoUtils.readEncrypted(file));
-            }
-            try {
-                File decryptedOutFile;
-                Users users = new Users();
-                String doesFileExist = users.doesFileExist("data/login.csv", file.getName());
-                
-                if (doesFileExist == null) {
-                  if(keyInput.getText().length() == 16)
-                  {
-                  String key = keyInput.getText();
-                  if(file.getPath().lastIndexOf("encrypted.txt") != -1) {
-                  decryptedOutFile = new File(file.getPath().substring(0,file.getPath().lastIndexOf("encrypted.txt"))+".decrypted.txt");
-                  }
-                  else
-                  {
-                  decryptedOutFile = new File(file.getPath()+".decrypted.txt");
-                  }
-                  CryptoUtils.decrypt(key, file, decryptedOutFile);
-                  System.out.print("This is the cryptoUtils test:"+CryptoUtils.readEncrypted(decryptedOutFile));
-                  decryptRes = CryptoUtils.readEncrypted(decryptedOutFile);
-                  textOutput.setText(decryptRes);
-                  }
-                  else
-                  {
-                      textOutput.setText("ERROR: Invalid key (16 char)");
-                  }
-                } else
-                    textOutput.setText(doesFileExist);
-                
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 }
