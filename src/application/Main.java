@@ -33,7 +33,6 @@ public class Main extends Application {
             primaryStage.setOnCloseRequest((EventHandler<WindowEvent>) new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent t) {
-                    System.out.println(Utils.getRandString(16));
                     if (users.getCurUser() != null) {
                         System.out.println("Saving user data");
                         users.serializeUserData();

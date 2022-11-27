@@ -88,8 +88,6 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
 
-        System.out.println(buttonText);
-
         if (buttonText.equals("Decrypt"))
             Loaders.loadScene("DecryptView1.fxml");
         else if (buttonText.equals("Vault"))
