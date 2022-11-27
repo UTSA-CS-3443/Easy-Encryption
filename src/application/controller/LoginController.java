@@ -69,7 +69,7 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
     public void handleLogin(ActionEvent event) {
         String inputUsername = username.getText();
         String inputPassword = password.getText();
-        if (Main.users.validate("jacob_2", "jhRed")) {
+        if (Main.users.validate(inputUsername, inputPassword)) {
             loginFail.setVisible(false);
             Loaders.loadScene("UserInteraction.fxml");
             LoginController.currentUser = inputUsername;

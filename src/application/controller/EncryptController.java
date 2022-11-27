@@ -52,11 +52,42 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
 
     String encryptRes;
 
+    public void handleEncrypt(ActionEvent event) {
+        if (!isFileOpen) {
+            System.out.print(bookText.toString());
+        }
+        try {
+
+            Users users = new Users();
+            String doesFileExist = users.doesFileExist("data/login.csv", file.getName());
+
+            if (doesFileExist == null) {
+                if (keyInput.getText().length() == 16) {
+                    String key = keyInput.getText();
+                    File encryptedOutFile = new File(file.getPath() + ".encrypted.txt");
+                    CryptoUtils.encrypt(key, file, encryptedOutFile);
+                    System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(encryptedOutFile));
+                    encryptRes = CryptoUtils.readEncrypted(encryptedOutFile);
+                    textOutput.setText(encryptRes);
+                    users.addKeyAndFile("data/login.csv", LoginController.currentUser,
+                            "," + file.getName() + "," + key);
+                } else {
+
+                    textOutput.setText("ERROR: Invalid key (16 char)");
+                }
+            } else
+                textOutput.setText(doesFileExist);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void handle(ActionEvent event) {
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
-        
+
         System.out.println(buttonText);
 
         if (buttonText.equals("Decrypt"))
@@ -87,40 +118,6 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
 
             textInput.setText(bookText.toString());
             isFileOpen = true;
-        }
-
-        else if (buttonText.equals("Encrypt")) {
-            if (!isFileOpen) {
-                System.out.print(bookText.toString());
-            }
-            try {
-                
-                Users users = new Users();
-                String doesFileExist = users.doesFileExist("data/login.csv", file.getName());
-                
-                if (doesFileExist == null) {
-                  if(keyInput.getText().length()==16)
-                  {
-                  String key = keyInput.getText();
-                  File encryptedOutFile = new File(file.getPath()+".encrypted.txt");
-                  CryptoUtils.encrypt(key, file, encryptedOutFile);
-                  System.out.print("This is the cryptoUtils test:"+CryptoUtils.readEncrypted(encryptedOutFile));
-                  encryptRes = CryptoUtils.readEncrypted(encryptedOutFile);
-                  textOutput.setText(encryptRes);
-                  users.addKeyAndFile("data/login.csv", LoginController.currentUser,
-                          "," + file.getName() + "," + key);
-                  }
-                  else
-                  {
-                      
-                      keyInput.setPromptText("ERROR: Invalid key (16 char)");
-                  }
-                } else
-                    textOutput.setText(doesFileExist);
-                
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 }

@@ -18,7 +18,7 @@
                   <Insets left="10.0" top="20.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="encrypt" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
+            <Button fx:id="encrypt" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Encrypt">
                <HBox.margin>
                   <Insets left="10.0" top="20.0" />
                </HBox.margin></Button>
@@ -46,7 +46,7 @@
                   <Label fx:id="textInput" alignment="TOP_LEFT" layoutX="7.0" layoutY="7.0" prefHeight="372.0" prefWidth="357.0" style="-fx-background-color: white;" />
                </children></AnchorPane>
             <Button fx:id="fopen" layoutX="24.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Open File" />
-            <Button fx:id="fopen1" layoutX="262.0" layoutY="445.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Encrypt" />
+            <Button fx:id="fopen1" layoutX="262.0" layoutY="445.0" mnemonicParsing="false" onAction="#handleEncrypt" prefHeight="25.0" prefWidth="107.0" text="Encrypt" />
             <TextField fx:id="keyInput" layoutX="24.0" prefHeight="39.0" prefWidth="357.0" promptText="Enter a 16 character key" />
          </children></AnchorPane>
       <AnchorPane fx:id="ap2" layoutX="400.0" layoutY="105.0" prefHeight="484.0" prefWidth="400.0">

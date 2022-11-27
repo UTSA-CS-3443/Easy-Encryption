@@ -44,19 +44,22 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
     private Label state;
     private StringBuilder bookText = null;
     private File encryptedVault = null;
-    private File decryptedVault;
+    private File decryptedVault = null;
     private Scanner scan = null;
     private String key = "Vaultkeyencrypt1";
     private Users users = new Users();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Scanner scan = null;
-        encryptedVault = new File("vault/"+Main.users.getCurUser()+"EncryptedVault.txt");
-        decryptedVault = new File("vault/"+Main.users.getCurUser()+"DecrypedVault.txt");
         bookText = new StringBuilder();
 
         try {
-                    CryptoUtils.decrypt(key, encryptedVault, decryptedVault);
+            encryptedVault = new File("vault/" + Main.users.getCurUser() + "EncryptedVault.txt");
+            decryptedVault = new File("vault/" + Main.users.getCurUser() + "DecrypedVault.txt");
+            encryptedVault.createNewFile();
+            decryptedVault.createNewFile();
+            CryptoUtils.decrypt(key, encryptedVault, decryptedVault);
             scan = new Scanner(new File(decryptedVault.getAbsolutePath()));
 
             while (scan.hasNextLine()) {
@@ -64,13 +67,13 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
                 bookText.append("\n");
             }
             scan.close();
-        } catch (IOException | CryptoException e) {
-            
+        } catch (Exception e) {
+            System.out.println("Files Not created");
             e.printStackTrace();
         }
 
         notepad.setText(bookText.toString());
-        
+
     }
 
     @Override
@@ -78,8 +81,7 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
         Button button = (Button) event.getSource();
         String buttonText = button.getText();
 
-        if (buttonText.equals("Encrypt"))
-        {
+        if (buttonText.equals("Encrypt")) {
             Loaders.loadScene("EncryptView1.fxml");
             try {
                 Files.deleteIfExists(decryptedVault.toPath());
@@ -87,9 +89,7 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }
-            else if (buttonText.equals("Decrypt"))
-        {
+        } else if (buttonText.equals("Decrypt")) {
             Loaders.loadScene("DecryptView1.fxml");
             try {
                 Files.deleteIfExists(decryptedVault.toPath());
@@ -97,9 +97,7 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }
-        else if (buttonText.equals("Saved Keys"))
-        {
+        } else if (buttonText.equals("Saved Keys")) {
             Loaders.loadScene("SavedKeysView1.fxml");
             try {
                 Files.deleteIfExists(decryptedVault.toPath());
@@ -107,9 +105,7 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }
-            else if (buttonText.equals("Home"))
-        {
+        } else if (buttonText.equals("Home")) {
             Loaders.loadScene("UserInteraction.fxml");
             try {
                 Files.deleteIfExists(decryptedVault.toPath());
@@ -117,22 +113,24 @@ public class VaultController implements EventHandler<ActionEvent>, Initializable
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-        }
-        else if (buttonText.equals("save")){
+        } else if (buttonText.equals("Save")) {
+            System.out.print("items are being saved");
             try {
                 Files.deleteIfExists(encryptedVault.toPath());
                 Files.deleteIfExists(decryptedVault.toPath());
+                encryptedVault.createNewFile();
+                decryptedVault.createNewFile();
                 FileWriter write = new FileWriter(decryptedVault);
                 write.write(notepad.getText());
                 write.close();
                 CryptoUtils.encrypt(key, decryptedVault, encryptedVault);
-                }
-                catch (IOException | CryptoException e) {
+            } catch (Exception e) {
                 // TODO Auto-generated catch block
+                System.out.print("Files not saved");
                 e.printStackTrace();
             }
         }
-        
+
     }
 
 }
