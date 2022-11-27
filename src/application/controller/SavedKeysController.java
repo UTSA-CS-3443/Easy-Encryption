@@ -35,7 +35,7 @@ public class SavedKeysController implements EventHandler<ActionEvent>, Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        keys.getItems().addAll(Main.users.getUserData().getKeys().values());
+        keys.getItems().addAll(Main.users.getKeys().values());
     }
 
     @Override

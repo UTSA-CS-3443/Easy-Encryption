@@ -60,14 +60,12 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
             if (keyInput.getText().length() == 16) {
                 String key = keyInput.getText();
                 if (file.getPath().lastIndexOf("encrypted.txt") != -1) {
-                    decryptedOutFile = new File(
-                            file.getPath().substring(0, file.getPath().lastIndexOf("encrypted.txt"))
-                                    + ".decrypted.txt");
+                    decryptedOutFile = new File(file.getPath().substring(0, file.getPath().lastIndexOf("encrypted.txt"))
+                            + ".decrypted.txt");
                 } else {
                     decryptedOutFile = new File(file.getPath() + ".decrypted.txt");
                 }
                 CryptoUtils.decrypt(key, file, decryptedOutFile);
-                System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(decryptedOutFile));
                 decryptRes = CryptoUtils.readEncrypted(decryptedOutFile);
                 textOutput.setText(decryptRes);
             } else {

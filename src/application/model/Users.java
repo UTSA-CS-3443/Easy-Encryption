@@ -21,11 +21,11 @@ public class Users {
     private static final String DATA_DIR = "data/";
     private static final String LOGIN_DATA = DATA_DIR + "login.csv";
 
+    private HashMap<String, String> keys = new HashMap<>();
     private Scanner sc;
     private String line = "", password, line2 = "";
     private static HashMap<String, String> userInfo;
     private ArrayList<String> savedKeys = new ArrayList<String>();
-    private UserData userData;
     private String curUser;
     private String userDataFile;
 
@@ -55,22 +55,19 @@ public class Users {
                 this.curUser = username;
                 this.userDataFile = DATA_DIR + username + ".dat";
                 boolean userLoaded = this.deserializeUserData();
-                if (!userLoaded) {
-                    this.userData = new UserData(this.curUser);
-                }
                 return true;
             }
         }
         return false;
     }
-    
+
     public void serializeUserData() {
         try {
             FileOutputStream userObjectFile = new FileOutputStream(this.userDataFile);
 
             ObjectOutputStream userObjectStream = new ObjectOutputStream(userObjectFile);
 
-            userObjectStream.writeObject(this.userData);
+            userObjectStream.writeObject(this.keys);
 
             userObjectFile.close();
             userObjectStream.close();
@@ -90,7 +87,7 @@ public class Users {
 
             ObjectInputStream userObjectStream = new ObjectInputStream(userObjectFile);
 
-            this.userData = (UserData) userObjectStream.readObject();
+            this.keys = (HashMap) userObjectStream.readObject();
 
             userObjectFile.close();
             userObjectStream.close();
@@ -100,6 +97,18 @@ public class Users {
             e.printStackTrace();
         }
         return true;
+    }
+
+    public void addKey(String keyName, String key) {
+        keys.put(keyName, key);
+    }
+
+    public String getKey(String keyName) {
+        return keys.get(keyName);
+    }
+
+    public HashMap<String, String> getKeys() {
+        return this.keys;
     }
 
     /**
@@ -115,13 +124,9 @@ public class Users {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public HashMap<String, String> getUserinfo() {
         return this.userInfo;
-    }
-    
-    public UserData getUserData() {
-        return this.userData;
     }
 
 //    /**

@@ -62,10 +62,9 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
                 String key = keyInput.getText();
                 File encryptedOutFile = new File(file.getPath() + ".encrypted.txt");
                 CryptoUtils.encrypt(key, file, encryptedOutFile);
-                System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(encryptedOutFile));
                 encryptRes = CryptoUtils.readEncrypted(encryptedOutFile);
                 textOutput.setText(encryptRes);
-                Main.users.getUserData().addKey("key_" + Utils.getRandString(8), key);
+                Main.users.addKey("key_" + Utils.getRandString(4), key);
             } else {
                 textOutput.setText("ERROR: Invalid key (16 char)");
             }

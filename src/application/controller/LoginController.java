@@ -52,7 +52,6 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
     public void initialize(URL location, ResourceBundle resources) {
         Users users = new Users();
         users.loadAllUsers("data/login.csv");
-        System.out.println(users.getUserinfo().toString());
         int[] imgNumber = new int[5];
         random = new Random();
         int randIndex = random.nextInt(5);
