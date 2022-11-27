@@ -10,6 +10,7 @@ import application.Main;
 import application.model.CryptoUtils;
 import application.model.Loaders;
 import application.model.Users;
+import application.model.Utils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -55,29 +56,23 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
         }
         try {
             File decryptedOutFile;
-            Users users = new Users();
-            String doesFileExist = users.doesFileExist("data/login.csv", file.getName());
 
-            if (doesFileExist == null) {
-                if (keyInput.getText().length() == 16) {
-                    String key = keyInput.getText();
-                    if (file.getPath().lastIndexOf("encrypted.txt") != -1) {
-                        decryptedOutFile = new File(
-                                file.getPath().substring(0, file.getPath().lastIndexOf("encrypted.txt"))
-                                        + ".decrypted.txt");
-                    } else {
-                        decryptedOutFile = new File(file.getPath() + ".decrypted.txt");
-                    }
-                    CryptoUtils.decrypt(key, file, decryptedOutFile);
-                    System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(decryptedOutFile));
-                    decryptRes = CryptoUtils.readEncrypted(decryptedOutFile);
-                    textOutput.setText(decryptRes);
+            if (keyInput.getText().length() == 16) {
+                String key = keyInput.getText();
+                if (file.getPath().lastIndexOf("encrypted.txt") != -1) {
+                    decryptedOutFile = new File(
+                            file.getPath().substring(0, file.getPath().lastIndexOf("encrypted.txt"))
+                                    + ".decrypted.txt");
                 } else {
-                    textOutput.setText("ERROR: Invalid key (16 char)");
+                    decryptedOutFile = new File(file.getPath() + ".decrypted.txt");
                 }
-            } else
-                textOutput.setText(doesFileExist);
-
+                CryptoUtils.decrypt(key, file, decryptedOutFile);
+                System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(decryptedOutFile));
+                decryptRes = CryptoUtils.readEncrypted(decryptedOutFile);
+                textOutput.setText(decryptRes);
+            } else {
+                textOutput.setText("ERROR: Invalid key (16 char)");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class UserData implements Serializable {
+    private static final long serialVersionUID = 1L;
     private static HashMap<String, String> keys = new HashMap<>();
 
     public UserData(String username) {

@@ -3,6 +3,7 @@ package application.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import application.model.Loaders;
 import application.model.Users;
 import javafx.event.ActionEvent;
@@ -34,9 +35,7 @@ public class SavedKeysController implements EventHandler<ActionEvent>, Initializ
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Users users = new Users();
-        users.addSavedKeys("data/login.csv");
-        keys.getItems().addAll(users.getSavedKeys());
+        keys.getItems().addAll(Main.users.getUserData().getKeys().values());
     }
 
     @Override

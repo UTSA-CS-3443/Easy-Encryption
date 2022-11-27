@@ -11,6 +11,7 @@ import application.Main;
 import application.model.Encryption;
 import application.model.Loaders;
 import application.model.Users;
+import application.model.Utils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,27 +58,17 @@ public class EncryptController implements EventHandler<ActionEvent>, Initializab
             System.out.print(bookText.toString());
         }
         try {
-
-            Users users = new Users();
-            String doesFileExist = users.doesFileExist("data/login.csv", file.getName());
-
-            if (doesFileExist == null) {
-                if (keyInput.getText().length() == 16) {
-                    String key = keyInput.getText();
-                    File encryptedOutFile = new File(file.getPath() + ".encrypted.txt");
-                    CryptoUtils.encrypt(key, file, encryptedOutFile);
-                    System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(encryptedOutFile));
-                    encryptRes = CryptoUtils.readEncrypted(encryptedOutFile);
-                    textOutput.setText(encryptRes);
-                    users.addKeyAndFile("data/login.csv", LoginController.currentUser,
-                            "," + file.getName() + "," + key);
-                } else {
-
-                    textOutput.setText("ERROR: Invalid key (16 char)");
-                }
-            } else
-                textOutput.setText(doesFileExist);
-
+            if (keyInput.getText().length() == 16) {
+                String key = keyInput.getText();
+                File encryptedOutFile = new File(file.getPath() + ".encrypted.txt");
+                CryptoUtils.encrypt(key, file, encryptedOutFile);
+                System.out.print("This is the cryptoUtils test:" + CryptoUtils.readEncrypted(encryptedOutFile));
+                encryptRes = CryptoUtils.readEncrypted(encryptedOutFile);
+                textOutput.setText(encryptRes);
+                Main.users.getUserData().addKey("key_" + Utils.getRandString(8), key);
+            } else {
+                textOutput.setText("ERROR: Invalid key (16 char)");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
