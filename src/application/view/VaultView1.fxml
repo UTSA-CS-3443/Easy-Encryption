@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -7,8 +8,9 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -50,11 +52,11 @@
                   <Font size="14.0" />
                </font></TextArea>
          </children></AnchorPane>
-      <Label fx:id="state" layoutX="563.0" layoutY="34.0" prefHeight="46.0" prefWidth="135.0" text="Vault">
-         <font>
-            <Font size="31.0" />
-         </font>
-      </Label>
       <Button fx:id="save" layoutX="618.0" layoutY="543.0" mnemonicParsing="false" onAction="#handle" prefHeight="25.0" prefWidth="107.0" text="Save" />
+      <ImageView fitHeight="40.0" fitWidth="221.0" layoutX="487.0" layoutY="31.0" preserveRatio="true">
+         <image>
+            <Image url="@../../../data/vaultFont.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
