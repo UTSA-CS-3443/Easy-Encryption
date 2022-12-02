@@ -46,6 +46,10 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
     private Random random;
     public static String currentUser, currentPassword;
 
+    /*
+    * Loads in existing user logins
+    * Always randomly choses a user image
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Users users = new Users();
