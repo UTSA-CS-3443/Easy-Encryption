@@ -42,7 +42,7 @@ public class Encryption {
     }
 
     private byte[] decode(String data) {
-        return Base64.getDecoder().decode(data);
+        return Base64.getDecoder().decode(data );
     }
 
     public static SecretKey getKeyFromPassword(String password, String salt)
