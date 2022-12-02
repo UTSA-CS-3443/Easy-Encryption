@@ -41,10 +41,8 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
     private Circle circle;
     @FXML
     public AnchorPane ap;
-
     @FXML
     private Text loginFail;
-
     private Random random;
     public static String currentUser, currentPassword;
 
@@ -65,6 +63,11 @@ public class LoginController implements EventHandler<ActionEvent>, Initializable
 
     }
 
+    /*
+    * Verifies whether or not a user exists
+    * If yes, the main menu is loaded up
+    * If not, an error message appears
+    */
     public void handleLogin(ActionEvent event) {
         String inputUsername = username.getText();
         String inputPassword = password.getText();
