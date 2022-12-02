@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
-
 import application.Main;
 import application.model.CryptoUtils;
 import application.model.Loaders;
@@ -76,6 +75,11 @@ public class DecryptController implements EventHandler<ActionEvent>, Initializab
         }
     }
 
+    /*
+    * Loads the appropriate view
+    * If Open File is selected a txt file will be read
+    * and displayed
+    */
     @Override
     public void handle(ActionEvent event) {
         Button button = (Button) event.getSource();
