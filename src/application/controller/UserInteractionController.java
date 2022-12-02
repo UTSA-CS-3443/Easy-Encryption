@@ -3,7 +3,6 @@ package application.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import application.model.Loaders;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +36,9 @@ public class UserInteractionController implements Initializable {
         setImages();
     }
 
+    /*
+    * Loads the appropriate view
+    */
     public void handle(ActionEvent event) {
 
         Button button = (Button) event.getSource();
@@ -54,10 +56,9 @@ public class UserInteractionController implements Initializable {
             Loaders.loadScene("UserInteraction.fxml");
     }
 
-    /**
-     * handleCircle handle mouse events generated from the 4 circles.
-     * 
-     * @param e
+    /*
+     * Images were attached to a MouseEvent, to allow the user
+     * to simply click on an image and load up the appropriate view
      */
     public void handleCircle(MouseEvent e) {
         Circle circle = (Circle) e.getSource();
