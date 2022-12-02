@@ -2,7 +2,6 @@ package application.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import application.Main;
 import application.model.Loaders;
 import application.model.Users;
@@ -38,6 +37,9 @@ public class SavedKeysController implements EventHandler<ActionEvent>, Initializ
         keys.getItems().addAll(Main.users.getKeys().values());
     }
 
+    /*
+    * Loads the appropriate view
+    */
     @Override
     public void handle(ActionEvent event) {
 
