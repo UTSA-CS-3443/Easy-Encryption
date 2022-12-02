@@ -35,6 +35,10 @@ public class Users {
         this.curUser = null;
     }
 
+    /*
+    * Reads in user logins from the login.csv file
+    * in order to set up the password/username validation
+    */
     public void loadAllUsers(String users) {
         try {
             sc = new Scanner(new File(users));
@@ -49,6 +53,9 @@ public class Users {
         }
     }
 
+    /*
+    * Checks whether or not a user exists
+    */
     public boolean validate(String username, String password) {
         if (userInfo.containsKey(password) && userInfo.containsValue(username)) {
             if (userInfo.get(password).equals(username)) {
@@ -128,83 +135,7 @@ public class Users {
     public HashMap<String, String> getUserinfo() {
         return this.userInfo;
     }
-
-//    /**
-//     * @return the savedKeys
-//     */
-//    public ArrayList<String> getSavedKeys() {
-//        return savedKeys;
-//    }
-
-    /**
-     * @param savedKeys the savedKeys to set
-     */
-//    public void setSavedKeys(ArrayList<String> savedKeys) {
-//        this.savedKeys = savedKeys;
-//    }
-//
-//    public void addKeyAndFile(String allUsers, String user, String fileKey) {
-//        Path path = Paths.get(allUsers);
-//
-//        try {
-//            List<String> allLines = Files.readAllLines(path);
-//            int lineNum = 0;
-//            for (String line : allLines) {
-//                if (line.contains(user)) {
-//                    line += fileKey;
-//                    allLines.set(lineNum, line);
-//                }
-//                lineNum++;
-//            }
-//            Files.write(path, allLines);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    public String doesFileExist(String allUsers, String fileName) {
-//        Path path = Paths.get(allUsers);
-//
-//        try {
-//            List<String> allLines = Files.readAllLines(path);
-//
-//            for (String line : allLines)
-//                if (line.contains(fileName)) {
-//                    String[] toks = line.split(",");
-//                    for (int i = 0; i < toks.length; i++)
-//                        if (toks[i].equals(fileName)) {
-//                            return toks[i + 1];
-//                        }
-//                }
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return null;
-//    }
-//
-//    public void addSavedKeys(String file) {
-//        try {
-//            sc = new Scanner(new File(file));
-//
-//            while (sc.hasNextLine() && (line2 = sc.nextLine()) != null) {
-//
-//                String[] rowData = line2.split(",");
-//
-//                for (int i = 0; i < rowData.length; i++) {
-//                    if (line2.contains(LoginController.currentUser)) {
-//                        if ((i % 2 != 0) && (i != 1))
-//                            savedKeys.add(rowData[i]);
-//                    }
-//                }
-//            }
-//            sc.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
-
+    
     public String getCurUser() {
         return curUser;
     }
