@@ -12,7 +12,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /*
-* DISREGARD THIS SCRIPT, IT IS NOT IN USE
+* DISREGARD THIS SCRIPT, IT IS NOT IN USE 
 */
 
 public class Encryption {
